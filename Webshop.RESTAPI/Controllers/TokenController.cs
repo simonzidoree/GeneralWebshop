@@ -1,6 +1,8 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
 using Webshop.Core.Entities;
+using Webshop.RESTAPI.Helpers.HelperInterfaces;
 
 namespace Webshop.RESTAPI.Controllers
 {
@@ -8,17 +10,19 @@ namespace Webshop.RESTAPI.Controllers
     public class TokenController : ControllerBase
     {
         private readonly IUserService _Service;
+        private readonly IAuthenticationHelper authenticationHelper;
 
-        public TokenController(IUserService service)
+        public TokenController(IUserService service, IAuthenticationHelper authService)
         {
             _Service = service;
+            authenticationHelper = authService;
         }
 
 
         [HttpPost]
         public IActionResult Login([FromBody] LoginInput model)
         {
-            var user = _Service.GetWhereUsername(model.Username);
+            var user = _Service.GetAll().FirstOrDefault(u => u.Username == model.Username);
 
 
             // check if username exists
@@ -28,7 +32,7 @@ namespace Webshop.RESTAPI.Controllers
             }
 
             // check if password is correct
-            if (!_Service.CheckCorrectPassword(user, model))
+            if (!authenticationHelper.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return Unauthorized();
             }
@@ -37,7 +41,7 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(new
             {
                 username = user.Username,
-                token = _Service.GenerateToken(user)
+                token = authenticationHelper.GenerateToken(user)
             });
         }
     }
