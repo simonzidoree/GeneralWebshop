@@ -4,6 +4,7 @@ dotnet: 2.1
 
 before_install:
 - sudo apt-get update
+- sudo add-apt-repository universe
 
 install:
 - dotnet restore
