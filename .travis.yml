@@ -1,3 +1,10 @@
 language: csharp
-solution: GeneralWebshopApp.sln
+dist: trusty
+mono: none
+dotnet: 2.1
 
+install:
+- dotnet restore
+
+script:
+- dotnet build
