@@ -7,3 +7,7 @@ install:
 
 script:
 - dotnet build
+
+notifications:
+  webhooks:
+  - http://hotm.gg/travis-ci.php
