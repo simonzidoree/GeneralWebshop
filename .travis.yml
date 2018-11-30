@@ -2,16 +2,8 @@ language: csharp
 mono: none
 dotnet: 2.1
 
-before_install:
-- sudo apt-get update
-- sudo add-apt-repository universe
-
 install:
 - dotnet restore
 
 script:
 - dotnet build
-
-notifications:
-  webhooks:
-  - http://hotm.gg/travis-ci.php
