@@ -35,8 +35,52 @@ namespace Webshop.Infrastructure.Data
                 }
             };
 
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    Title = "title1",
+                    Description = "description1",
+                    Price = 11.11,
+                    Image = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    AmountInStock = 1,
+                    Featured = true
+                },
+                new Product
+                {
+                    Title = "title2",
+                    Description = "description2",
+                    Price = 22.22,
+                    Image = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    AmountInStock = 2,
+                    Featured = false
+                },
+                new Product
+                {
+                    Title = "title3",
+                    Description = "description3",
+                    Price = 33.33,
+                    Image = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    AmountInStock = 3,
+                    Featured = false
+                },
+                new Product
+                {
+                    Title = "title4",
+                    Description = "description4",
+                    Price = 44.44,
+                    Image = "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    AmountInStock = 4,
+                    Featured = true
+                }
+            };
+
             ctx.Users.AddRange(users);
+            ctx.Products.AddRange(products);
+
             ctx.SaveChanges();
+
+
         }
 
         // This method computes a hashed and salted password using the HMACSHA512 algorithm.
@@ -60,5 +104,7 @@ namespace Webshop.Infrastructure.Data
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
+
+
     }
 }
