@@ -8,5 +8,7 @@ namespace Webshop.Core.DomainService
         IEnumerable<Product> ReadAllProducts();
         Product CreateProduct(Product product);
         Product DeleteProduct(int id);
+        Product FindProductById(int id);
+        Product UpdateProduct(Product productUpdate);
     }
 }

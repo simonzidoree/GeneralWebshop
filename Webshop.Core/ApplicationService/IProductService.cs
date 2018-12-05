@@ -7,6 +7,8 @@ namespace Webshop.Core.ApplicationService
     {
         List<Product> GetAllProducts();
         Product CreateProduct(Product product);
-        Product DeleteOwner(int id);
+        Product DeleteProduct(int id);
+        Product FindProductById(int id);
+        Product UpdateProduct(int id, Product productUpdate);
     }
 }

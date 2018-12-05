@@ -37,7 +37,31 @@ namespace Webshop.RESTAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Product> Delete(int id)
         {
-            return Ok(ProductService.DeleteOwner(id));
+            return Ok(ProductService.DeleteProduct(id));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Product> Put(int id, [FromBody] Product product)
+        {
+            if (id < 1 || id != product.Id)
+            {
+                return BadRequest("Parameter Id and product ID must be the same");
+            }
+
+            return Ok(ProductService.UpdateProduct(id, product));
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Product> Get(int id)
+        {
+            var product = ProductService.FindProductById(id);
+
+            if (product == null)
+            {
+                return BadRequest($"There is no product with the ID: {id}");
+            }
+
+            return Ok(product);
         }
     }
 }

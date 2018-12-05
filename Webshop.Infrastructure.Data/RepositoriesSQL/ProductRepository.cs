@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Webshop.Core.DomainService;
 using Webshop.Core.Entities;
 
@@ -30,6 +32,19 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
             var productRemoved = _ctx.Remove(new Product {Id = id}).Entity;
             _ctx.SaveChanges();
             return productRemoved;
+        }
+
+        public Product FindProductById(int id)
+        {
+            return _ctx.Products.FirstOrDefault(p => p.Id == id);
+        }
+
+        public Product UpdateProduct(Product productUpdate)
+        {
+            _ctx.Attach(productUpdate).State = EntityState.Modified;
+            _ctx.SaveChanges();
+
+            return productUpdate;
         }
     }
 }

@@ -24,9 +24,26 @@ namespace Webshop.Core.ApplicationService.Services
             return _productRepository.CreateProduct(product);
         }
 
-        public Product DeleteOwner(int id)
+        public Product DeleteProduct(int id)
         {
             return _productRepository.DeleteProduct(id);
+        }
+
+        public Product FindProductById(int id)
+        {
+            return _productRepository.FindProductById(id);
+        }
+
+        public Product UpdateProduct(int id, Product productUpdate)
+        {
+            var product = FindProductById(id);
+            product.Title = productUpdate.Title;
+            product.Description = productUpdate.Description;
+            product.Price = productUpdate.Price;
+            product.Image = productUpdate.Image;
+            product.AmountInStock = productUpdate.AmountInStock;
+            product.Featured = productUpdate.Featured;
+            return _productRepository.UpdateProduct(product);
         }
     }
 }
