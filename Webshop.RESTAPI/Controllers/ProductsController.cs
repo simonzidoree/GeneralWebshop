@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
@@ -11,15 +12,26 @@ namespace Webshop.RESTAPI.Controllers
     {
         public ProductsController(IProductService productService)
         {
-            _productService = productService;
+            ProductService = productService;
         }
 
-        private IProductService _productService { get; }
+        private IProductService ProductService { get; }
 
         [HttpGet]
         public ActionResult<IEnumerable<Product>> Get()
         {
-            return Ok(_productService.GetAllProducts());
+            return Ok(ProductService.GetAllProducts());
+        }
+
+        [HttpPost]
+        public ActionResult<Product> Post([FromBody] Product product)
+        {
+            if (product.Title == null || Math.Abs(product.Price) < 0.01 || product.AmountInStock == 0)
+            {
+                return BadRequest("The Product has to have info for Title, Price & AmountInStock!");
+            }
+
+            return Ok(ProductService.CreateProduct(product));
         }
     }
 }

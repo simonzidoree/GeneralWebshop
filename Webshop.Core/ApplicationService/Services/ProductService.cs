@@ -18,5 +18,10 @@ namespace Webshop.Core.ApplicationService.Services
         {
             return _productRepository.ReadAllProducts().ToList();
         }
+
+        public Product CreateProduct(Product product)
+        {
+            return _productRepository.CreateProduct(product);
+        }
     }
 }

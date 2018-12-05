@@ -6,5 +6,6 @@ namespace Webshop.Core.ApplicationService
     public interface IProductService
     {
         List<Product> GetAllProducts();
+        Product CreateProduct(Product product);
     }
 }

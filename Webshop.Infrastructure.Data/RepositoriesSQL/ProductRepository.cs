@@ -17,5 +17,12 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
         {
             return _ctx.Products;
         }
+
+        public Product CreateProduct(Product product)
+        {
+            var productFromDb = _ctx.Products.Add(product).Entity;
+            _ctx.SaveChanges();
+            return productFromDb;
+        }
     }
 }
