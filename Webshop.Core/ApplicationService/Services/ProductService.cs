@@ -23,5 +23,10 @@ namespace Webshop.Core.ApplicationService.Services
         {
             return _productRepository.CreateProduct(product);
         }
+
+        public Product DeleteOwner(int id)
+        {
+            return _productRepository.DeleteProduct(id);
+        }
     }
 }

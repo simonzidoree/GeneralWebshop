@@ -7,5 +7,6 @@ namespace Webshop.Core.ApplicationService
     {
         List<Product> GetAllProducts();
         Product CreateProduct(Product product);
+        Product DeleteOwner(int id);
     }
 }

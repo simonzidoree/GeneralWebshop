@@ -24,5 +24,12 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
             _ctx.SaveChanges();
             return productFromDb;
         }
+
+        public Product DeleteProduct(int id)
+        {
+            var productRemoved = _ctx.Remove(new Product {Id = id}).Entity;
+            _ctx.SaveChanges();
+            return productRemoved;
+        }
     }
 }

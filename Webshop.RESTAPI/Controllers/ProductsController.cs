@@ -33,5 +33,11 @@ namespace Webshop.RESTAPI.Controllers
 
             return Ok(ProductService.CreateProduct(product));
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Product> Delete(int id)
+        {
+            return Ok(ProductService.DeleteOwner(id));
+        }
     }
 }
