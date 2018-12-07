@@ -15,7 +15,7 @@ namespace Webshop.Core.Entities
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
         public bool IsDelivered { get; set; }
         public List<Product> Products { get; set; }
     }

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using Webshop.Core.Entities;
@@ -94,7 +96,7 @@ namespace Webshop.Infrastructure.Data
                     PhoneNumber = 35335353,
                     Email = "e@e.com",
                     Comment = "Nice comment",
-                    OrderDate = DateTime.Now,
+                    OrderDate = DateTime.Now.ToString("dd-MM-yyyy"),
                     IsDelivered = true,
                     Products = products
                 }
