@@ -9,5 +9,6 @@ namespace Webshop.Core.Entities
         public string Image { get; set; }
         public int AmountInStock { get; set; }
         public bool Featured { get; set; }
+        public Order Order { get; set; }
     }
 }
