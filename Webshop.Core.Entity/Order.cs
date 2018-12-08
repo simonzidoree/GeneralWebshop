@@ -17,6 +17,7 @@ namespace Webshop.Core.Entities
         public string Comment { get; set; }
         public string OrderDate { get; set; }
         public bool IsDelivered { get; set; }
+        public bool EmailSent { get; set; }
         public List<Product> Products { get; set; }
     }
 }

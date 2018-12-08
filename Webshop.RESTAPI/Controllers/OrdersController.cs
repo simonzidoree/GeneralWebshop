@@ -42,6 +42,11 @@ namespace Webshop.RESTAPI.Controllers
                 return BadRequest("Parameter Id and order ID must be the same");
             }
 
+            if (order.IsDelivered && !order.EmailSent)
+            {
+                return Ok(OrderService.UpdateOrderAndEmail(id, order));
+            }
+
             return Ok(OrderService.UpdateOrder(id, order));
         }
 

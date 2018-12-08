@@ -11,5 +11,6 @@ namespace Webshop.Core.ApplicationService
         Order UpdateOrder(int id, Order orderUpdate);
         Order FindOrderById(int id);
         Order FindOrderByIdIncludeProducts(int id);
+        Order UpdateOrderAndEmail(int id, Order order);
     }
 }

@@ -97,7 +97,7 @@ namespace Webshop.Infrastructure.Data
                     Email = "e@e.com",
                     Comment = "Nice comment",
                     OrderDate = DateTime.Now.ToString("dd-MM-yyyy"),
-                    IsDelivered = true,
+                    IsDelivered = false,
                     Products = products
                 }
             };
