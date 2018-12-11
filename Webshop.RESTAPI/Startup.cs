@@ -99,9 +99,6 @@ namespace Webshop.RESTAPI
             {
                 opt.AddPolicy("AllowSpecificOrigins",
                     builder => builder
-                        .WithOrigins("http://localhost:5000").AllowAnyHeader().AllowAnyMethod()
-                        .WithOrigins("https://localhost:5001").AllowAnyHeader().AllowAnyMethod()
-                        .WithOrigins("https://Webshopaof.firebaseapp.com").AllowAnyHeader().AllowAnyMethod()
                         .WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
                 );
             });
