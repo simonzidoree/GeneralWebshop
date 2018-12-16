@@ -87,7 +87,7 @@ namespace Webshop.Infrastructure.Data
             {
                 new Order
                 {
-                    OrderNumber = 4353453,
+                    OrderNumber = 23534534,
                     FullName = "FM",
                     Address = "A 404",
                     Zipcode = 6700,
@@ -96,7 +96,7 @@ namespace Webshop.Infrastructure.Data
                     PhoneNumber = 35335353,
                     Email = "e@e.com",
                     Comment = "Nice comment",
-                    OrderDate = DateTime.Now.ToString("dd-MM-yyyy"),
+                    OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
                     IsDelivered = false,
                     Products = products
                 }

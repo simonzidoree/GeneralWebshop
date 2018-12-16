@@ -25,6 +25,13 @@ namespace Webshop.Core.ApplicationService.Services
 
         public Order CreateOrder(Order order)
         {
+            order.OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+
+            var rnd = new Random();
+            var lastOrderNumber = _orderRepository.GetLastOrderNumber();
+            order.OrderNumber = lastOrderNumber + rnd.Next(0, 10);
+
+
             return _orderRepository.CreateOrder(order);
         }
 

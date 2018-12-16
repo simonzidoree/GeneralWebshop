@@ -53,5 +53,10 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
                 .Include(o => o.Products)
                 .FirstOrDefault(o => o.Id == id);
         }
+
+        public int GetLastOrderNumber()
+        {
+            return _ctx.Orders.Select(order => order.OrderNumber).Max();
+        }
     }
 }
