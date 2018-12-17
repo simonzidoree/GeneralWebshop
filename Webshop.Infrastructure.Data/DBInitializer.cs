@@ -48,7 +48,8 @@ namespace Webshop.Infrastructure.Data
                     Image =
                         "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
                     AmountInStock = 1,
-                    Featured = true
+                    Featured = true,
+                    Category = "computer"
                 },
                 new Product
                 {
@@ -58,7 +59,8 @@ namespace Webshop.Infrastructure.Data
                     Image =
                         "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
                     AmountInStock = 2,
-                    Featured = false
+                    Featured = false,
+                    Category = "chair"
                 },
                 new Product
                 {
@@ -68,7 +70,8 @@ namespace Webshop.Infrastructure.Data
                     Image =
                         "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
                     AmountInStock = 3,
-                    Featured = false
+                    Featured = false,
+                    Category = "computer"
                 },
                 new Product
                 {
@@ -78,7 +81,8 @@ namespace Webshop.Infrastructure.Data
                     Image =
                         "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
                     AmountInStock = 4,
-                    Featured = true
+                    Featured = true,
+                    Category = "sofa"
                 }
             };
 

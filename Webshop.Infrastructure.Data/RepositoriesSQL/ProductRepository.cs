@@ -29,14 +29,14 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Product DeleteProduct(int id)
         {
-            var productRemoved = _ctx.Remove(new Product {Id = id}).Entity;
+            var productRemoved = _ctx.Remove(new Product {ProductId = id}).Entity;
             _ctx.SaveChanges();
             return productRemoved;
         }
 
         public Product FindProductById(int id)
         {
-            return _ctx.Products.FirstOrDefault(p => p.Id == id);
+            return _ctx.Products.FirstOrDefault(p => p.ProductId == id);
         }
 
         public Product UpdateProduct(Product productUpdate)

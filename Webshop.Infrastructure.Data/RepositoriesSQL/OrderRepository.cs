@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Order DeleteOrder(int id)
         {
-            var orderRemoved = _ctx.Remove(new Order {Id = id}).Entity;
+            var orderRemoved = _ctx.Remove(new Order {OrderId = id}).Entity;
             _ctx.SaveChanges();
             return orderRemoved;
         }
@@ -44,19 +45,26 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Order FindOrderById(int id)
         {
-            return _ctx.Orders.FirstOrDefault(o => o.Id == id);
+            return _ctx.Orders.FirstOrDefault(o => o.OrderId == id);
         }
 
         public Order FindOrderByIdIncludeProducts(int id)
         {
             return _ctx.Orders
                 .Include(o => o.Products)
-                .FirstOrDefault(o => o.Id == id);
+                .FirstOrDefault(o => o.OrderId == id);
         }
 
         public int GetLastOrderNumber()
         {
-            return _ctx.Orders.Select(order => order.OrderNumber).Max();
+            try
+            {
+                return _ctx.Orders.Select(order => order.OrderNumber).Max();
+            }
+            catch (Exception)
+            {
+                return 23534534;
+            }
         }
     }
 }

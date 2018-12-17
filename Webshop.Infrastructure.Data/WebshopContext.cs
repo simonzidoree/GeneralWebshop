@@ -8,6 +8,11 @@ namespace Webshop.Infrastructure.Data
         public WebshopContext(DbContextOptions<WebshopContext> opt) : base(opt)
         {
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            // ...
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -18,7 +23,8 @@ namespace Webshop.Infrastructure.Data
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Order)
                 .WithMany(o => o.Products)
-                .OnDelete(DeleteBehavior.SetNull);
+//                .HasForeignKey(p => p.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Webshop.RESTAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Order> Put(int id, [FromBody] Order order)
         {
-            if (id < 1 || id != order.Id)
+            if (id < 1 || id != order.OrderId)
             {
                 return BadRequest("Parameter Id and order ID must be the same");
             }
