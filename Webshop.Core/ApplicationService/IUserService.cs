@@ -7,5 +7,6 @@ namespace Webshop.Core.ApplicationService
     {
         User Create(User t);
         IEnumerable<User> GetAll();
+        User GetById(int id);
     }
 }

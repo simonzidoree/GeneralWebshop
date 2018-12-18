@@ -8,5 +8,7 @@ namespace Webshop.Core.DomainService
         IEnumerable<User> GetAll();
 
         User Create(User t);
+
+        User GetById(int id);
     }
 }

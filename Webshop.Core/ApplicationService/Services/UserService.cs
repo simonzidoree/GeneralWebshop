@@ -23,5 +23,10 @@ namespace Webshop.Core.ApplicationService.Services
         {
             return _repository.GetAll().ToList();
         }
+
+        public User GetById(int id)
+        {
+            return _repository.GetById(id);
+        }
     }
 }
