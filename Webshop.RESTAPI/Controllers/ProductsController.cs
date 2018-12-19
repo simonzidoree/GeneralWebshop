@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
 using Webshop.Core.Entities;
@@ -23,6 +24,7 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(ProductService.GetAllProducts());
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<Product> Post([FromBody] Product product)
         {
@@ -34,12 +36,14 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(ProductService.CreateProduct(product));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Product> Delete(int id)
         {
             return Ok(ProductService.DeleteProduct(id));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Product> Put(int id, [FromBody] Product product)
         {

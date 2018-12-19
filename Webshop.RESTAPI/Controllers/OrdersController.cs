@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
 using Webshop.Core.Entities;
@@ -17,6 +17,7 @@ namespace Webshop.RESTAPI.Controllers
 
         private IOrderService OrderService { get; }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public ActionResult<IEnumerable<Order>> Get()
         {
@@ -29,12 +30,14 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(OrderService.CreateOrder(order));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Order> Delete(int id)
         {
             return Ok(OrderService.DeleteOrder(id));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Order> Put(int id, [FromBody] Order order)
         {
@@ -51,6 +54,7 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(OrderService.UpdateOrder(id, order));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public ActionResult<Order> Get(int id)
         {

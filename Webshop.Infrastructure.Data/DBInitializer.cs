@@ -25,13 +25,6 @@ namespace Webshop.Infrastructure.Data
                     Username = "a",
                     PasswordHash = passwordHashA,
                     PasswordSalt = passwordSaltA,
-                    IsAdmin = false
-                },
-                new User
-                {
-                    Username = "aa",
-                    PasswordHash = passwordHashAA,
-                    PasswordSalt = passwordSaltAA,
                     IsAdmin = true
                 }
             };
