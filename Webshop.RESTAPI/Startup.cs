@@ -127,7 +127,7 @@ namespace Webshop.RESTAPI
                 app.UseHsts();
             }
 
-            // Use authentication DeleteMe
+            // Use authentication
             app.UseAuthentication();
 
             app.UseCors("AllowSpecificOrigins");

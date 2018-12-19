@@ -23,9 +23,9 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Order CreateOrder(Order order)
         {
-            var orderFromDb = _ctx.Orders.Add(order).Entity;
+            _ctx.Attach(order).State = EntityState.Added;
             _ctx.SaveChanges();
-            return orderFromDb;
+            return order;
         }
 
         public Order DeleteOrder(int id)
@@ -37,10 +37,24 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Order UpdateOrder(Order orderUpdate)
         {
+            var newOrderLines = new List<OrderLine>(orderUpdate.OrderLines);
             _ctx.Attach(orderUpdate).State = EntityState.Modified;
-            _ctx.SaveChanges();
+            _ctx.OrderLines.RemoveRange(
+                _ctx.OrderLines.Where(ol => ol.OrderId == orderUpdate.OrderId)
+            );
 
+            foreach (var ol in newOrderLines)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+
+            _ctx.SaveChanges();
             return orderUpdate;
+
+//            _ctx.Attach(orderUpdate).State = EntityState.Modified;
+//            _ctx.SaveChanges();
+//
+//            return orderUpdate;
         }
 
         public Order FindOrderById(int id)
@@ -50,8 +64,8 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Order FindOrderByIdIncludeProducts(int id)
         {
-            return _ctx.Orders
-                .Include(o => o.Products)
+            return _ctx.Orders.Include(o => o.OrderLines)
+                .ThenInclude(ol => ol.Product)
                 .FirstOrDefault(o => o.OrderId == id);
         }
 

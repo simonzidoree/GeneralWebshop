@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Webshop.Core.Entities
@@ -19,6 +18,6 @@ namespace Webshop.Core.Entities
         public bool IsDelivered { get; set; }
         public bool EmailSent { get; set; }
 
-        public ICollection<Product> Products { get; set; } // list instead?
+        public List<OrderLine> OrderLines { get; set; }
     }
 }

@@ -54,7 +54,7 @@ namespace Webshop.Core.ApplicationService.Services
             order.Comment = orderUpdate.Comment;
             order.OrderDate = orderUpdate.OrderDate;
             order.IsDelivered = orderUpdate.IsDelivered;
-            order.Products = orderUpdate.Products;
+            order.OrderLines = orderUpdate.OrderLines;
             return _orderRepository.UpdateOrder(order);
         }
 
@@ -111,7 +111,7 @@ namespace Webshop.Core.ApplicationService.Services
             order.OrderDate = orderUpdate.OrderDate;
             order.IsDelivered = orderUpdate.IsDelivered;
             order.EmailSent = true;
-            order.Products = orderUpdate.Products;
+            order.OrderLines = orderUpdate.OrderLines;
             return _orderRepository.UpdateOrder(order);
         }
     }

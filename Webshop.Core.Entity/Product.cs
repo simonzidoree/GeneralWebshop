@@ -1,4 +1,4 @@
-using System.Data;
+using System.Collections.Generic;
 
 namespace Webshop.Core.Entities
 {
@@ -14,7 +14,6 @@ namespace Webshop.Core.Entities
 
         public string Category { get; set; }
 
-        public int? OrderId { get; set; }
-        public Order Order { get; set; }
+        public List<OrderLine> OrderLines { get; set; }
     }
 }

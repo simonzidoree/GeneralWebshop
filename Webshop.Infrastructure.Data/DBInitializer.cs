@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using Webshop.Core.Entities;
@@ -86,7 +84,6 @@ namespace Webshop.Infrastructure.Data
                 }
             };
 
-
             var orders = new List<Order>
             {
                 new Order
@@ -101,10 +98,43 @@ namespace Webshop.Infrastructure.Data
                     Email = "e@e.com",
                     Comment = "Nice comment",
                     OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                    IsDelivered = false,
-                    Products = products
+                    IsDelivered = false
                 }
             };
+
+            var order1 = ctx.Orders.Add(new Order
+            {
+                OrderNumber = 23000001,
+                FullName = "Jens Jensen",
+                Address = "FO Street 1",
+                Zipcode = 6700,
+                City = "Esbjerg",
+                Country = "Denmark",
+                PhoneNumber = 11111111,
+                Email = "j@j.dk",
+                Comment = "Nice comment",
+                OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
+                IsDelivered = false
+            }).Entity;
+
+            var product1 = ctx.Products.Add(new Product
+            {
+                Title = "ASUS ROG G703",
+                Description =
+                    "ROG G703 is a beast of a gaming laptop that has the power to take on today’s gaming desktops, thanks to its factory-overclocked 8th Generation Intel Core i9 processor and overclockable NVIDIA GeForce GTX 1080 graphics.",
+                Price = 33.33,
+                Image =
+                    "https://www.asus.com/media/global/products/MR9WA0YsXc377gln/P_setting_xxx_0_90_end_300.png",
+                AmountInStock = 11,
+                Featured = false,
+                Category = "Computere"
+            }).Entity;
+
+            ctx.OrderLines.Add(new OrderLine
+            {
+                Product = product1,
+                Order = order1
+            });
 
             ctx.Users.AddRange(users);
             ctx.Products.AddRange(products);

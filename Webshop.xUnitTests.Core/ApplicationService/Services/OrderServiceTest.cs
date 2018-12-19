@@ -28,8 +28,7 @@ namespace Webshop.xUnitTests.Core.ApplicationService.Services
                     Email = "e@e.com",
                     Comment = "Nice comment",
                     OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                    IsDelivered = false,
-                    Products = null
+                    IsDelivered = false
                 },
                 new Order
                 {
@@ -44,8 +43,7 @@ namespace Webshop.xUnitTests.Core.ApplicationService.Services
                     Email = "a@a.com",
                     Comment = "Nice comment",
                     OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                    IsDelivered = true,
-                    Products = null
+                    IsDelivered = true
                 }
             };
 
@@ -102,8 +100,7 @@ namespace Webshop.xUnitTests.Core.ApplicationService.Services
                 Email = "e@e.com",
                 Comment = "Nice comment",
                 OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                IsDelivered = false,
-                Products = null
+                IsDelivered = false
             };
 
 
@@ -130,8 +127,7 @@ namespace Webshop.xUnitTests.Core.ApplicationService.Services
                 Email = "e@e.com",
                 Comment = "Nice comment",
                 OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                IsDelivered = false,
-                Products = null
+                IsDelivered = false
             };
 
 
@@ -158,8 +154,7 @@ namespace Webshop.xUnitTests.Core.ApplicationService.Services
                 Email = "e@e.com",
                 Comment = "Nice comment",
                 OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
-                IsDelivered = false,
-                Products = null
+                IsDelivered = false
             };
 
 
