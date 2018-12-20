@@ -126,7 +126,9 @@ namespace Webshop.Infrastructure.Data
             ctx.OrderLines.Add(new OrderLine
             {
                 Product = product1,
-                Order = order1
+                Order = order1,
+                Qty = 1,
+                PriceWhenBought = 1000
             });
 
             ctx.Users.AddRange(users);
