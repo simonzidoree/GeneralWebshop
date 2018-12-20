@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
 using Webshop.Core.Entities;
@@ -17,6 +18,7 @@ namespace Webshop.RESTAPI.Controllers
 
         private IUserService UserService { get; }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<User> CreateUser([FromBody] UserModel user)
         {
