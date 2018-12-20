@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 
 namespace Webshop.Core.Entities
 {
     public class Order
     {
-        public int Id { get; set; }
+        public int OrderId { get; set; }
         public int OrderNumber { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }
@@ -18,6 +17,7 @@ namespace Webshop.Core.Entities
         public string OrderDate { get; set; }
         public bool IsDelivered { get; set; }
         public bool EmailSent { get; set; }
-        public List<Product> Products { get; set; }
+
+        public List<OrderLine> OrderLines { get; set; }
     }
 }

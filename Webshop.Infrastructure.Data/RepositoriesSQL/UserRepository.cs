@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Webshop.Core.DomainService;
 using Webshop.Core.Entities;
 
@@ -23,6 +24,11 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
             var user = _ctx.Users.Add(t).Entity;
             _ctx.SaveChanges();
             return user;
+        }
+
+        public User GetById(int id)
+        {
+            return _ctx.Users.FirstOrDefault(user => user.Id == id);
         }
     }
 }

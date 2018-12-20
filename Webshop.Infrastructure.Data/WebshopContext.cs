@@ -12,13 +12,24 @@ namespace Webshop.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>()
-                .HasOne(p => p.Order)
-                .WithMany(o => o.Products)
-                .OnDelete(DeleteBehavior.SetNull);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<OrderLine>()
+                .HasKey(ol => new {ol.ProductId, ol.OrderId});
+
+            modelBuilder.Entity<OrderLine>()
+                .HasOne(ol => ol.Order)
+                .WithMany(o => o.OrderLines)
+                .HasForeignKey(ol => ol.OrderId);
+
+            modelBuilder.Entity<OrderLine>()
+                .HasOne(ol => ol.Product)
+                .WithMany(p => p.OrderLines)
+                .HasForeignKey(ol => ol.ProductId);
         }
     }
 }

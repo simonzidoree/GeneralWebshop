@@ -43,6 +43,8 @@ namespace Webshop.Core.ApplicationService.Services
             product.Image = productUpdate.Image;
             product.AmountInStock = productUpdate.AmountInStock;
             product.Featured = productUpdate.Featured;
+            product.Category = productUpdate.Category;
+            product.OrderLines = productUpdate.OrderLines;
             return _productRepository.UpdateProduct(product);
         }
     }

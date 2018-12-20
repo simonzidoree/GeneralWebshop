@@ -11,5 +11,6 @@ namespace Webshop.Core.DomainService
         Order UpdateOrder(Order orderUpdate);
         Order FindOrderById(int id);
         Order FindOrderByIdIncludeProducts(int id);
+        int GetLastOrderNumber();
     }
 }

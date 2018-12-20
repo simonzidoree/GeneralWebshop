@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using Webshop.Core.Entities;
@@ -27,13 +25,6 @@ namespace Webshop.Infrastructure.Data
                     Username = "a",
                     PasswordHash = passwordHashA,
                     PasswordSalt = passwordSaltA,
-                    IsAdmin = false
-                },
-                new User
-                {
-                    Username = "aa",
-                    PasswordHash = passwordHashAA,
-                    PasswordSalt = passwordSaltAA,
                     IsAdmin = true
                 }
             };
@@ -42,52 +33,55 @@ namespace Webshop.Infrastructure.Data
             {
                 new Product
                 {
-                    Title = "title1",
+                    Title = "Lenovo",
                     Description = "description1",
                     Price = 11.11,
                     Image =
-                        "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                        "https://bilkadk.imgix.net/medias/sys_master/root/hc7/h18/10276123148318.jpg",
                     AmountInStock = 1,
-                    Featured = true
+                    Featured = true,
+                    Category = "Computere"
                 },
                 new Product
                 {
-                    Title = "title2",
+                    Title = "Flot stol",
                     Description = "description2",
                     Price = 22.22,
                     Image =
-                        "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                        "https://www.room21.dk/bilder/artiklar/zoom/124366_1.jpg",
                     AmountInStock = 2,
-                    Featured = false
+                    Featured = false,
+                    Category = "Stole"
                 },
                 new Product
                 {
-                    Title = "title3",
+                    Title = "Asus",
                     Description = "description3",
                     Price = 33.33,
                     Image =
-                        "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                        "https://www.asus.com/dk/Commercial-Laptops/ASUSPRO-P4540UQ/websites/global/products/skTsLtvMny8HiIaf/images/asus_p4540_notebook_1.png",
                     AmountInStock = 3,
-                    Featured = false
+                    Featured = false,
+                    Category = "Computere"
                 },
                 new Product
                 {
-                    Title = "title4",
+                    Title = "Sovesofa",
                     Description = "description4",
                     Price = 44.44,
                     Image =
-                        "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350",
+                        "https://ilva.dk/webshop/images/Ide-faelles/100003281057-001.JPG",
                     AmountInStock = 4,
-                    Featured = true
+                    Featured = true,
+                    Category = "Sofaer"
                 }
             };
-
 
             var orders = new List<Order>
             {
                 new Order
                 {
-                    OrderNumber = 4353453,
+                    OrderNumber = 23534534,
                     FullName = "FM",
                     Address = "A 404",
                     Zipcode = 6700,
@@ -96,11 +90,46 @@ namespace Webshop.Infrastructure.Data
                     PhoneNumber = 35335353,
                     Email = "e@e.com",
                     Comment = "Nice comment",
-                    OrderDate = DateTime.Now.ToString("dd-MM-yyyy"),
-                    IsDelivered = false,
-                    Products = products
+                    OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
+                    IsDelivered = false
                 }
             };
+
+            var order1 = ctx.Orders.Add(new Order
+            {
+                OrderNumber = 23000001,
+                FullName = "Jens Jensen",
+                Address = "FO Street 1",
+                Zipcode = 6700,
+                City = "Esbjerg",
+                Country = "Denmark",
+                PhoneNumber = 11111111,
+                Email = "j@j.dk",
+                Comment = "Nice comment",
+                OrderDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"),
+                IsDelivered = false
+            }).Entity;
+
+            var product1 = ctx.Products.Add(new Product
+            {
+                Title = "ASUS ROG G703",
+                Description =
+                    "ROG G703 is a beast of a gaming laptop that has the power to take on today’s gaming desktops, thanks to its factory-overclocked 8th Generation Intel Core i9 processor and overclockable NVIDIA GeForce GTX 1080 graphics.",
+                Price = 33.33,
+                Image =
+                    "https://www.asus.com/media/global/products/MR9WA0YsXc377gln/P_setting_xxx_0_90_end_300.png",
+                AmountInStock = 11,
+                Featured = false,
+                Category = "Computere"
+            }).Entity;
+
+            ctx.OrderLines.Add(new OrderLine
+            {
+                Product = product1,
+                Order = order1,
+                Qty = 1,
+                PriceWhenBought = 1000
+            });
 
             ctx.Users.AddRange(users);
             ctx.Products.AddRange(products);

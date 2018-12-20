@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Core.ApplicationService;
 using Webshop.Core.Entities;
@@ -16,6 +17,7 @@ namespace Webshop.RESTAPI.Controllers
 
         private IOrderService OrderService { get; }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public ActionResult<IEnumerable<Order>> Get()
         {
@@ -28,16 +30,18 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(OrderService.CreateOrder(order));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Order> Delete(int id)
         {
             return Ok(OrderService.DeleteOrder(id));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Order> Put(int id, [FromBody] Order order)
         {
-            if (id < 1 || id != order.Id)
+            if (id < 1 || id != order.OrderId)
             {
                 return BadRequest("Parameter Id and order ID must be the same");
             }
@@ -50,6 +54,7 @@ namespace Webshop.RESTAPI.Controllers
             return Ok(OrderService.UpdateOrder(id, order));
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public ActionResult<Order> Get(int id)
         {

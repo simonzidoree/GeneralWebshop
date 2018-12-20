@@ -22,29 +22,49 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
         public Product CreateProduct(Product product)
         {
-            var productFromDb = _ctx.Products.Add(product).Entity;
+            _ctx.Attach(product).State = EntityState.Added;
             _ctx.SaveChanges();
-            return productFromDb;
+            return product;
         }
 
         public Product DeleteProduct(int id)
         {
-            var productRemoved = _ctx.Remove(new Product {Id = id}).Entity;
+            var productRemoved = _ctx.Remove(new Product {ProductId = id}).Entity;
             _ctx.SaveChanges();
             return productRemoved;
         }
 
         public Product FindProductById(int id)
         {
-            return _ctx.Products.FirstOrDefault(p => p.Id == id);
+            return _ctx.Products
+                .Include(o => o.OrderLines)
+                .ThenInclude(ol => ol.Order)
+                .FirstOrDefault(o => o.ProductId == id);
         }
 
         public Product UpdateProduct(Product productUpdate)
         {
+            var newOrderLines = new List<OrderLine>(productUpdate.OrderLines);
+
             _ctx.Attach(productUpdate).State = EntityState.Modified;
+
+            _ctx.OrderLines.RemoveRange(
+                _ctx.OrderLines.Where(ol => ol.ProductId == productUpdate.ProductId)
+            );
+
+            foreach (var ol in newOrderLines)
+            {
+                _ctx.Entry(ol).State = EntityState.Added;
+            }
+
             _ctx.SaveChanges();
 
             return productUpdate;
+
+//            _ctx.Attach(productUpdate).State = EntityState.Modified;
+//            _ctx.SaveChanges();
+//
+//            return productUpdate;
         }
     }
 }
