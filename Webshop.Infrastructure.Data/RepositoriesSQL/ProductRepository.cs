@@ -60,11 +60,6 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
             _ctx.SaveChanges();
 
             return productUpdate;
-
-//            _ctx.Attach(productUpdate).State = EntityState.Modified;
-//            _ctx.SaveChanges();
-//
-//            return productUpdate;
         }
     }
 }

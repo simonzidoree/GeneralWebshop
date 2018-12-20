@@ -50,11 +50,6 @@ namespace Webshop.Infrastructure.Data.RepositoriesSQL
 
             _ctx.SaveChanges();
             return orderUpdate;
-
-//            _ctx.Attach(orderUpdate).State = EntityState.Modified;
-//            _ctx.SaveChanges();
-//
-//            return orderUpdate;
         }
 
         public Order FindOrderById(int id)
